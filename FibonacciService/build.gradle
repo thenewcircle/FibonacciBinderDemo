@@ -8,9 +8,12 @@ android {
         applicationId "com.marakana.android.fibonacciservice"
         minSdkVersion 8
         targetSdkVersion 21
+        versionCode 1
+        versionName "1.0"
 
         ndk {
             moduleName "com_marakana_android_fibonaccinative_FibLib"
+            ldLibs "log"
         }
     }
 
