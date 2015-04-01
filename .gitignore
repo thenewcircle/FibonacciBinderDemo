@@ -13,11 +13,15 @@ bin/
 gen/
 libs/
 obj/
+build/
 
 # project files
 .project
 .classpath
 .settings/
+.idea/
+.gradle/
+*.iml
 
 # Local configuration file (sdk path, etc)
 local.properties
