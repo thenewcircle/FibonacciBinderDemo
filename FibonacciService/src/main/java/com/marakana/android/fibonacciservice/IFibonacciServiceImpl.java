@@ -1,6 +1,5 @@
 package com.marakana.android.fibonacciservice;
 
-import android.content.Context;
 import android.os.SystemClock;
 import android.util.Log;
 
@@ -12,18 +11,7 @@ import com.marakana.android.fibonaccinative.FibLib;
 public class IFibonacciServiceImpl extends IFibonacciService.Stub {
     private static final String TAG = "IFibonacciServiceImpl";
 
-    private final Context context;
-
-    public IFibonacciServiceImpl(Context context) {
-        this.context = context;
-    }
-
-    private long checkN(long n) {
-        if (n > 10) {
-            this.context.enforceCallingOrSelfPermission(
-                    context.getString(R.string.USE_SLOW_FIBONACCI_SERVICE), "Go away!");
-        }
-        return n;
+    public IFibonacciServiceImpl() {
     }
 
     public long fibJI(long n) {
@@ -33,7 +21,7 @@ public class IFibonacciServiceImpl extends IFibonacciService.Stub {
 
     public long fibJR(long n) {
         Log.d(TAG, String.format("fibJR(%d)", n));
-        return FibLib.fibJR(this.checkN(n));
+        return FibLib.fibJR(n);
     }
 
     public long fibNI(long n) {
@@ -43,7 +31,7 @@ public class IFibonacciServiceImpl extends IFibonacciService.Stub {
 
     public long fibNR(long n) {
         Log.d(TAG, String.format("fibNR(%d)", n));
-        return FibLib.fibNR(this.checkN(n));
+        return FibLib.fibNR(n);
     }
 
     public FibonacciResponse fib(FibonacciRequest request) {

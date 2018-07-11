@@ -1,14 +1,11 @@
 package com.marakana.android.fibonacciclient;
 
-import android.annotation.TargetApi;
 import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.ComponentName;
 import android.content.Intent;
 import android.content.ServiceConnection;
-import android.content.pm.PackageManager;
 import android.os.AsyncTask;
-import android.os.Build;
 import android.os.Bundle;
 import android.os.IBinder;
 import android.os.RemoteException;
@@ -30,8 +27,6 @@ import com.marakana.android.fibonaccicommon.IFibonacciService;
 public class FibonacciActivity extends Activity implements OnClickListener {
 
     private static final String TAG = "FibonacciActivity";
-
-    private static final int USE_FIBONACCI_SERVICE_CODE = 100;
 
     private boolean isBound = false;
 
@@ -58,15 +53,6 @@ public class FibonacciActivity extends Activity implements OnClickListener {
         this.button.setOnClickListener(this);
         // the button will be enabled once we connect to the service
         this.button.setEnabled(false);
-
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-            String useFibonacciService = getString(R.string.USE_FIBONACCI_SERVICE);
-            String useSlowFibonacciService = getString(R.string.USE_SLOW_FIBONACCI_SERVICE);
-            if (!hasPermissions(useFibonacciService)) {
-                requestPermissions(new String[]{useFibonacciService, useSlowFibonacciService},
-                        USE_FIBONACCI_SERVICE_CODE);
-            }
-        }
     }
 
     ServiceConnection serviceConnection = new ServiceConnection() {
@@ -83,26 +69,6 @@ public class FibonacciActivity extends Activity implements OnClickListener {
             FibonacciActivity.this.service = null;
         }
     };
-
-    @TargetApi(Build.VERSION_CODES.M)
-    private boolean hasPermissions(String permission) {
-        return (checkSelfPermission(permission) == PackageManager.PERMISSION_GRANTED);
-    }
-
-    @Override
-    public void onRequestPermissionsResult(int requestCode,
-                                           String permissions[], int[] grantResults) {
-        switch (requestCode) {
-            case USE_FIBONACCI_SERVICE_CODE: {
-                if (grantResults.length > 0
-                        && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                    bindToFibonacciService();
-                } else {
-                    Log.d("TAG", "USE_FIBONACCI_SERVICE_CODE permission denied");
-                }
-            }
-        }
-    }
 
     private void bindToFibonacciService() {
         // Bind to our FibonacciService service, by looking it up by its name
@@ -123,10 +89,7 @@ public class FibonacciActivity extends Activity implements OnClickListener {
     protected void onResume() {
         Log.d(TAG, "onResume()'ed");
         super.onResume();
-
-        if (hasPermissions(getString(R.string.USE_FIBONACCI_SERVICE))) {
-            bindToFibonacciService();
-        }
+        bindToFibonacciService();
     }
 
     @Override
