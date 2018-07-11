@@ -89,13 +89,6 @@ public class FibonacciActivity extends Activity implements OnClickListener {
         return (checkSelfPermission(permission) == PackageManager.PERMISSION_GRANTED);
     }
 
-    @TargetApi(Build.VERSION_CODES.M)
-    private void askForPermission(String permission, int code) {
-        if (!hasPermissions(permission)) {
-            requestPermissions(new String[]{permission}, code);
-        }
-    }
-
     @Override
     public void onRequestPermissionsResult(int requestCode,
                                            String permissions[], int[] grantResults) {
