@@ -11,4 +11,6 @@
 	<string name="type_fib_ji">fibJI</string>
 	<string name="type_fib_nr">fibNR</string>
 	<string name="type_fib_ni">fibNI</string>
+	<string name="USE_FIBONACCI_SERVICE">com.marakana.android.fibonacciservice.USE_FIBONACCI_SERVICE</string>
+	<string name="USE_SLOW_FIBONACCI_SERVICE">com.marakana.android.fibonacciservice.USE_SLOW_FIBONACCI_SERVICE</string>
 </resources>

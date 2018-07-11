@@ -14,7 +14,7 @@
 		android:protectionLevel="dangerous" />
 
 	<permission
-		android:name="com.marakana.android.fibonacciservice.USE_SLOW_FIBONACCI_SERVICE"
+		android:name="@string/USE_SLOW_FIBONACCI_SERVICE"
 		android:description="@string/use_slow_fibonacci_service_permission_description"
 		android:label="@string/use_slow_fibonacci_service_permission_label"
 		android:permissionGroup="com.marakana.android.fibonacciservice.FIBONACCI_PERMISSIONS"
